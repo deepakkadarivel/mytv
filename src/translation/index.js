@@ -9,7 +9,8 @@ addLocaleData([...en, ...nl]);
 
 const translations = {
     'en-US': enUS,
-    'nl-NL': nlNL
+    'nl-NL': nlNL,
+    nl: nlNL
 };
 
 const locale =
