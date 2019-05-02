@@ -10,3 +10,13 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
+
+.container {
+    padding: 50px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+}
