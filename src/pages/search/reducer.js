@@ -1,5 +1,4 @@
-import searchActionTypes from './actionTypes';
-import searchInitialState from './initialState';
+import { searchActionTypes, searchInitialState } from './actions';
 
 const searchReducer = (state = searchInitialState, action) => {
     switch (action.type) {

@@ -7,7 +7,7 @@ const Nav = () => {
     return (
         <div className="Nav">
             <span className="Nav-logo">
-                <img src={logo} alt={t('logo')} /> MyTV{' '}
+                <img src={logo} alt={t('logo')} /> MyTV
             </span>
         </div>
     );
