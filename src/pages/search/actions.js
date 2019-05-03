@@ -22,7 +22,7 @@ const searchActionTypes = {
     SET_SHOWS: 'SET_SHOWS'
 };
 
-const fetchShows = () => (dispatch, getState) => {
+const fetchShows = history => (dispatch, getState) => {
     const searchText = getSearchText(getState());
     dispatch({ type: searchActionTypes.FETCH_SHOWS.pending });
 
@@ -36,6 +36,7 @@ const fetchShows = () => (dispatch, getState) => {
             dispatch({
                 type: searchActionTypes.FETCH_SHOWS.fulfilled
             });
+            history.push('/shows');
         })
         .catch(() => {
             dispatch({
@@ -44,9 +45,9 @@ const fetchShows = () => (dispatch, getState) => {
         });
 };
 
-const setSearchText = searchText => dispatch => {
+const setSearchText = (searchText, history) => dispatch => {
     dispatch({ type: searchActionTypes.SET_SEARCH_TEXT, searchText });
-    dispatch(fetchShows());
+    dispatch(fetchShows(history));
 };
 
 export { searchInitialState, searchActionTypes, fetchShows, setSearchText };

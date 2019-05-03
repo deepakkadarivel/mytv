@@ -1,0 +1,21 @@
+.Shows {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+}
+
+@media (min-width: 320px) and (max-width: 719px) {
+    .Shows {
+        grid-template-columns: repeat(1, 1fr);
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+}
+
+@media (min-width: 720px) and (max-width: 960px) {
+    .Shows {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

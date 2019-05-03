@@ -9,10 +9,11 @@ const mapStateToProps = state => ({
     searchText: getSearchText(state)
 });
 
-const mapDispatchToProps = {
+const mapDispatchToProps = (dispatch, ownProps) => ({
     fetchShows,
-    setSearchText
-};
+    setSearchText: searchText =>
+        dispatch(setSearchText(searchText, ownProps.history))
+});
 
 export default connect(
     mapStateToProps,
