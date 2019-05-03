@@ -24,6 +24,7 @@ class SeriesComponent extends Component {
                             key={episode.id}
                             {...episode}
                             onClick={() => {
+                                localStorage.setItem('episodeId', episode.id);
                                 history.push(`${match.url}/episode`);
                             }}
                         />
