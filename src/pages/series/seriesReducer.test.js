@@ -2,6 +2,7 @@ import seriesReducer from './seriesReducer';
 import { seriesInitialState, seriesActionTypes } from './seriesActions';
 
 describe('series reducer', () => {
+    let expectedState;
     it('should return initial state', () => {
         expect(seriesReducer(undefined, {})).toEqual(seriesInitialState);
     });
@@ -12,10 +13,8 @@ describe('series reducer', () => {
             isRejected: false,
             isFulfilled: false
         };
-        const expectedState = {
-            ...seriesInitialState,
-            fetchingEpisodes
-        };
+        expectedState = seriesInitialState.asMutable({deep: true});
+        expectedState.fetchingEpisodes = fetchingEpisodes;
 
         expect(
             seriesReducer(seriesInitialState, {
@@ -30,10 +29,8 @@ describe('series reducer', () => {
             isRejected: false,
             isFulfilled: true
         };
-        const expectedState = {
-            ...seriesInitialState,
-            fetchingEpisodes
-        };
+        expectedState = seriesInitialState.asMutable({deep: true});
+        expectedState.fetchingEpisodes = fetchingEpisodes;
 
         expect(
             seriesReducer(seriesInitialState, {
@@ -48,10 +45,8 @@ describe('series reducer', () => {
             isRejected: true,
             isFulfilled: false
         };
-        const expectedState = {
-            ...seriesInitialState,
-            fetchingEpisodes
-        };
+        expectedState = seriesInitialState.asMutable({deep: true});
+        expectedState.fetchingEpisodes = fetchingEpisodes;
 
         expect(
             seriesReducer(seriesInitialState, {
@@ -62,10 +57,9 @@ describe('series reducer', () => {
 
     it(`should handle ${seriesActionTypes.SET_SERIES_DETAILS}`, () => {
         const details = { test: 'test' };
-        const expectedState = {
-            ...seriesInitialState,
-            details
-        };
+
+        expectedState = seriesInitialState.asMutable({deep: true});
+        expectedState.details = details;
 
         expect(
             seriesReducer(seriesInitialState, {
@@ -77,10 +71,9 @@ describe('series reducer', () => {
 
     it(`should handle ${seriesActionTypes.SET_SERIES_EPISODES}`, () => {
         const episodes = ['show 1', 'show 2'];
-        const expectedState = {
-            ...seriesInitialState,
-            episodes
-        };
+
+        expectedState = seriesInitialState.asMutable({deep: true});
+        expectedState.episodes = episodes;
 
         expect(
             seriesReducer(seriesInitialState, {

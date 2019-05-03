@@ -1,9 +1,8 @@
 import { get } from 'lodash';
 import t from '../../translation';
 
-const getSearchText = state => get(state, 'search.searchText');
 const getShows = state => {
-    const shows = get(state, 'search.shows');
+    const shows = get(state, 'shows.shows');
     return shows.map(show => {
         const item = show.show;
         return (
@@ -23,6 +22,6 @@ const getShows = state => {
         );
     });
 };
-const getFetchingShows = state => get(state, 'search.fetchingShows');
+const getFetchingShows = state => get(state, 'shows.fetchingShows');
 
-export { getSearchText, getShows, getFetchingShows };
+export { getShows, getFetchingShows };

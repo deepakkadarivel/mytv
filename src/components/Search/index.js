@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import t from '../../translation';
 import './_style.scss';
 
 const Search = props => {
     const { handleInput, disabled } = props;
+    const [search, setSearch] = useState('');
     return (
         <div className="Search">
             <input
                 className="Search-input"
                 type="search"
-                placeholder={t('search.placeholder')}
-                onKeyPress={e => handleInput(e)}
+                placeholder={t('search.hint')}
                 disabled={disabled}
+                value={search}
+                onChange={e => setSearch(e.target.value)}
             />
-            <p className="Search-hint">{t('search.hint')}</p>
+            <button
+                className="Search-button"
+                type="button"
+                onClick={() => handleInput(search)}
+            >
+                {t('search.button')}
+            </button>
         </div>
     );
 };

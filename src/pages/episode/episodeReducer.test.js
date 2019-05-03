@@ -2,6 +2,7 @@ import episodeReducer from './episodeReducer';
 import { episodeActionTypes, episodeInitialState } from './episodeActions';
 
 describe('episode reducer', () => {
+    let expectedState;
     it('should return initial state', () => {
         expect(episodeReducer(undefined, {})).toEqual(episodeInitialState);
     });
@@ -12,10 +13,8 @@ describe('episode reducer', () => {
             isRejected: false,
             isFulfilled: false
         };
-        const expectedState = {
-            ...episodeInitialState,
-            fetchingEpisode
-        };
+        expectedState = episodeInitialState.asMutable({ deep: true });
+        expectedState.fetchingEpisode = fetchingEpisode;
 
         expect(
             episodeReducer(episodeInitialState, {
@@ -30,10 +29,8 @@ describe('episode reducer', () => {
             isRejected: false,
             isFulfilled: true
         };
-        const expectedState = {
-            ...episodeInitialState,
-            fetchingEpisode
-        };
+        expectedState = episodeInitialState.asMutable({ deep: true });
+        expectedState.fetchingEpisode = fetchingEpisode;
 
         expect(
             episodeReducer(episodeInitialState, {
@@ -48,10 +45,8 @@ describe('episode reducer', () => {
             isRejected: true,
             isFulfilled: false
         };
-        const expectedState = {
-            ...episodeInitialState,
-            fetchingEpisode
-        };
+        expectedState = episodeInitialState.asMutable({ deep: true });
+        expectedState.fetchingEpisode = fetchingEpisode;
 
         expect(
             episodeReducer(episodeInitialState, {
@@ -71,10 +66,9 @@ describe('episode reducer', () => {
             desc: '',
             id: 123
         };
-        const expectedState = {
-            ...episodeInitialState,
-            episode
-        };
+
+        expectedState = episodeInitialState.asMutable({ deep: true });
+        expectedState.episode = episode;
 
         expect(
             episodeReducer(episodeInitialState, {

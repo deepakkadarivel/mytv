@@ -10,7 +10,7 @@ jest.mock('./ShowsComponent');
 
 describe('<ShowsContainer />', () => {
     const state = {
-        search: {
+        shows: {
             shows: []
         }
     };
@@ -47,7 +47,10 @@ describe('<ShowsContainer />', () => {
 
     describe('mapStateToProps', () => {
         it('sets the search prop', () => {
-            expect(componentProps.shows).toEqual(state.search.shows);
+            expect(componentProps.shows).toEqual(state.shows.shows);
+            expect(componentProps.fetchingShows).toEqual(
+                state.shows.fetchingShows
+            );
         });
     });
 });
