@@ -1,0 +1,42 @@
+.EpisodeCard {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+
+    &-image {
+        max-width: 100%;
+        max-height: 200px;
+    }
+    &-content {
+        max-height: 200px;
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px;
+        text-align: left;
+        font-size: 0.75rem;
+        line-height: 1.5rem;
+        color: #888888;
+        text-overflow: ellipsis;
+
+        &--title {
+            color: #000000;
+        }
+        &--desc {
+            overflow: hidden;
+            line-height: 1rem;
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 960px) {
+    .EpisodeCard {
+        &-content {
+            max-height: 200px;
+            &--desc {
+                word-wrap: break-word;
+                line-height: 1.2rem;
+            }
+        }
+    }
+}

@@ -3,12 +3,6 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import { SearchPage } from '.';
-// import {
-//     searchInitialState,
-//     searchActionTypes,
-//     fetchShows,
-//     setSearchText
-// } from './actions';
 import * as searchActions from './actions';
 
 import Component from './component';

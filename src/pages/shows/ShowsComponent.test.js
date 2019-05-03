@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 
 import ShowsComponent from './ShowsComponent';
 
+const historyMock = { push: jest.fn() };
+
 describe('<ShowsComponent />', () => {
     const props = {
         shows: [
@@ -17,7 +19,9 @@ describe('<ShowsComponent />', () => {
                 gener: 'Drama | Bio',
                 desc: 'test desc'
             }
-        ]
+        ],
+        setDetails: jest.fn(),
+        history: historyMock
     };
 
     it('renders the ShowsComponent', () => {
