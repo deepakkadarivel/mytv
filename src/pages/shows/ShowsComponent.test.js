@@ -15,7 +15,8 @@ const props = {
             type: 'English',
             gener: 'Drama | Bio',
             desc: 'test desc',
-            onClick: jest.fn()
+            onClick: jest.fn(),
+            id: 123
         }
     ],
     history: historyMock,
