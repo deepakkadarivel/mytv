@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 
 import ShowCard from '.';
 
+const historyMock = { push: jest.fn() };
+
 describe('<ShowCard />', () => {
     const props = {
         url: 'http://placeholder.com/32',
@@ -12,7 +14,9 @@ describe('<ShowCard />', () => {
         rating: 8,
         type: 'English',
         gener: 'Drama | Bio',
-        desc: 'test desc'
+        desc: 'test desc',
+        onClick: jest.fn(),
+        history: historyMock
     };
 
     const component = shallow(<ShowCard {...props} />);

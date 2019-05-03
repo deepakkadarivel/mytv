@@ -11,10 +11,11 @@ const ShowCard = props => {
         rating,
         type,
         gener,
-        desc
+        desc,
+        onClick
     } = props;
     return (
-        <div className="ShowCard">
+        <div className="ShowCard" onClick={onClick} role="presentation">
             <img className="ShowCard-image" src={url} alt={imageAlt} />
             <span className="ShowCard-content">
                 <span className="ShowCard-content--title">{title}</span>
@@ -40,7 +41,8 @@ ShowCard.propTypes = {
     rating: PropTypes.number,
     type: PropTypes.string.isRequired,
     gener: PropTypes.string.isRequired,
-    desc: PropTypes.string.isRequired
+    desc: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
 ShowCard.defaultProps = {
