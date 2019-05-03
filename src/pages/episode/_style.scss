@@ -1,0 +1,29 @@
+.Episode {
+    display: flex;
+    flex-direction: row;
+
+    &-image {
+        max-width: 200px;
+        max-height: 200px;
+        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    }
+    &-content {
+        max-height: 200px;
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px;
+        text-align: left;
+        font-size: 0.75rem;
+        line-height: 1.5rem;
+        color: #888888;
+        text-overflow: ellipsis;
+
+        &--title {
+            color: #000000;
+        }
+        &--desc {
+            overflow: hidden;
+            line-height: 1rem;
+        }
+    }
+}

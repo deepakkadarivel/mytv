@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 import SeriesComponent from './SeriesComponent';
 import { seriesInitialState } from './seriesActions';
 
+const historyMock = { push: jest.fn() };
+
 const props = {
     details: {
         url: 'http://placeholder.com/32',
@@ -15,7 +17,8 @@ const props = {
         desc: 'test desc'
     },
     episodes: seriesInitialState.episodes,
-    fetchEpisodes: jest.fn()
+    fetchEpisodes: jest.fn(),
+    history: historyMock
 };
 
 test('renders fine', () => {

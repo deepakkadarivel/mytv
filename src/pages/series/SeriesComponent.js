@@ -12,14 +12,19 @@ class SeriesComponent extends Component {
     }
 
     render() {
-        const { details, episodes } = this.props;
+        const { details, episodes, history } = this.props;
         return (
             <div className="Series container">
                 <ShowCard {...details} onClick={() => {}} />
                 <p className="Series-episodeTitle">{t('episodes')}</p>
                 <div className="Series-grid">
                     {episodes.map(episode => (
-                        <EpisodeCard {...episode} onClick={() => {}} />
+                        <EpisodeCard
+                            {...episode}
+                            onClick={() => {
+                                history.push('/episode');
+                            }}
+                        />
                     ))}
                 </div>
             </div>
@@ -30,7 +35,8 @@ class SeriesComponent extends Component {
 SeriesComponent.propTypes = {
     details: PropTypes.object.isRequired,
     episodes: PropTypes.array.isRequired,
-    fetchEpisodes: PropTypes.func.isRequired
+    fetchEpisodes: PropTypes.func.isRequired,
+    history: PropTypes.any.isRequired
 };
 
 export default SeriesComponent;
