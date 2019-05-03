@@ -4,6 +4,7 @@ import history from './history';
 import { SearchPage } from '../pages/search';
 import ShowsContainer from '../pages/shows/ShowsContainer';
 import SeriesContainer from '../pages/series/SeriesContainer';
+import EpisodeContainer from '../pages/episode/EpisodeContainer';
 
 const Routes = () => {
     return (
@@ -11,6 +12,7 @@ const Routes = () => {
             <Switch basename={window.location.pathname || ''}>
                 <Route path="/shows" component={ShowsContainer} />
                 <Route path="/series" component={SeriesContainer} />
+                <Route path="/episode" component={EpisodeContainer} />
                 <Route path="/search" component={SearchPage} />
                 <Redirect exact from="/" to="/search" />
             </Switch>
