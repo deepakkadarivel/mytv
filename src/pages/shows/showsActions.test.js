@@ -1,27 +1,24 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {
-    searchInitialState,
-    searchActionTypes,
-    fetchShows,
-    setSearchText
-} from './actions';
+    showsInitialState,
+    showsActionTypes,
+    fetchShows
+} from './showsActions';
 
 let state;
 let store;
-
-const historyMock = { push: jest.fn() };
 
 describe('fetchShows', () => {
     const middleWares = [thunk];
     const mockStore = configureMockStore(middleWares);
     beforeEach(() => {
-        state = searchInitialState;
+        state = showsInitialState;
         store = mockStore(state);
     });
 
     it(`dispatches ${
-        searchActionTypes.FETCH_SHOWS.fulfilled
+        showsActionTypes.FETCH_SHOWS.fulfilled
     } action with data on successful response`, done => {
         const mockData = {
             data: [
@@ -34,14 +31,14 @@ describe('fetchShows', () => {
         };
         const expectedActions = [
             {
-                type: searchActionTypes.FETCH_SHOWS.pending
+                type: showsActionTypes.FETCH_SHOWS.pending
             },
             {
-                type: searchActionTypes.SET_SHOWS,
+                type: showsActionTypes.SET_SHOWS,
                 shows: mockData.data
             },
             {
-                type: searchActionTypes.FETCH_SHOWS.fulfilled
+                type: showsActionTypes.FETCH_SHOWS.fulfilled
             }
         ];
 
@@ -65,42 +62,27 @@ describe('fetchShows', () => {
             return p;
         });
 
-        store.dispatch(fetchShows(historyMock)).then(() => {
+        store.dispatch(fetchShows()).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
             done();
         });
     });
 
     it(`dispatches ${
-        searchActionTypes.FETCH_SHOWS.rejected
+        showsActionTypes.FETCH_SHOWS.rejected
     } action if the response is failed`, done => {
         global.fetch = jest.fn().mockImplementation(() => Promise.reject());
         const expectedActions = [
             {
-                type: searchActionTypes.FETCH_SHOWS.pending
+                type: showsActionTypes.FETCH_SHOWS.pending
             },
             {
-                type: searchActionTypes.FETCH_SHOWS.rejected
+                type: showsActionTypes.FETCH_SHOWS.rejected
             }
         ];
-        store.dispatch(fetchShows(historyMock)).then(() => {
+        store.dispatch(fetchShows()).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
             done();
         });
-    });
-
-    it('set searchTeaxt', () => {
-        const searchText = 'test';
-        const expectedActions = [
-            {
-                type: searchActionTypes.SET_SEARCH_TEXT,
-                searchText
-            },
-            {
-                type: searchActionTypes.FETCH_SHOWS.pending
-            }
-        ];
-        store.dispatch(setSearchText(searchText));
-        expect(store.getActions()).toEqual(expectedActions);
     });
 });

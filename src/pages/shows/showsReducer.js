@@ -1,31 +1,29 @@
-import { searchActionTypes, searchInitialState } from './actions';
+import { showsActionTypes, showsInitialState } from './showsActions';
 
-const searchReducer = (state = searchInitialState, action) => {
+const showsReducer = (state = showsInitialState, action) => {
     switch (action.type) {
-    case searchActionTypes.FETCH_SHOWS.fulfilled:
+    case showsActionTypes.FETCH_SHOWS.fulfilled:
         return state
             .setIn(['fetchingShows', 'isPending'], false)
             .setIn(['fetchingShows', 'isFulfilled'], true)
             .setIn(['fetchingShows', 'isRejected'], false);
-    case searchActionTypes.FETCH_SHOWS.pending:
+    case showsActionTypes.FETCH_SHOWS.pending:
         return state
             .setIn(['fetchingShows', 'isPending'], true)
             .setIn(['fetchingShows', 'isFulfilled'], false)
             .setIn(['fetchingShows', 'isRejected'], false);
-    case searchActionTypes.FETCH_SHOWS.rejected:
+    case showsActionTypes.FETCH_SHOWS.rejected:
         return state
             .setIn(['fetchingShows', 'isPending'], false)
             .setIn(['fetchingShows', 'isFulfilled'], false)
             .setIn(['fetchingShows', 'isRejected'], true);
 
-    case searchActionTypes.SET_SHOWS:
-        return state.set('shows', action.shows || searchInitialState.shows);
-    case searchActionTypes.SET_SEARCH_TEXT:
-        return state.set('searchText', action.searchText);
+    case showsActionTypes.SET_SHOWS:
+        return state.set('shows', action.shows || showsInitialState.shows);
 
     default:
         return state;
     }
 };
 
-export default searchReducer;
+export default showsReducer;

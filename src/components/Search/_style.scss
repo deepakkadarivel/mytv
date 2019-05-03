@@ -4,10 +4,31 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+
+    &-button {
+        height: 32px;
+        width: 20%;
+        margin: 20px 0;
+        border: 1px solid #cccccc;
+        background-color: #ffffff;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #888888;
+        transition: 0.25s ease-in;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            border: 2px solid #444444;
+            color: #000000;
+        }
+    }
     &-input {
         height: 32px;
         width: 30%;
-        border: 1px solid #cccccc;
+        border: 1px solid #444444;
         border-radius: 2px;
         padding: 0 10px;
         font-size: 1rem;
@@ -32,6 +53,9 @@
         &-input {
             width: 100%;
         }
+        &-button {
+            width: 100%;
+        }
     }
 }
 
@@ -39,6 +63,9 @@
     .Search {
         &-input {
             width: 70%;
+        }
+        &-button {
+            width: 40%;
         }
     }
 }

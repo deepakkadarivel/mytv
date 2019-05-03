@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 import ShowsComponent from './ShowsComponent';
-import { getShows } from '../search/selectors';
-import { setDetails } from '../series/seriesActions';
+import { getShows, getFetchingShows } from './showsSelectors';
+import { fetchShows } from './showsActions';
 
 const mapStateToProps = state => ({
-    shows: getShows(state)
+    shows: getShows(state),
+    fetchingShows: getFetchingShows(state)
 });
 
 const mapDispatchToProps = {
-    setDetails
+    fetchShows
 };
 
 export default connect(

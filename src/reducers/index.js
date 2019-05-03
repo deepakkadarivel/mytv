@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { searchReducer } from '../pages/search';
 import seriesReducer from '../pages/series/seriesReducer';
 import episodeReducer from '../pages/episode/episodeReducer';
+import showsReducer from '../pages/shows/showsReducer';
 
 const rootReducer = combineReducers({
-    search: searchReducer,
+    shows: showsReducer,
     series: seriesReducer,
     episode: episodeReducer
 });

@@ -21,8 +21,8 @@ const episodeActionTypes = {
 
 const fetchEpisode = () => dispatch => {
     dispatch({ type: episodeActionTypes.FETCH_EPISODE.pending });
-
-    return fetch('http://api.tvmaze.com/episodes/657308')
+    const episodeId = localStorage.getItem('episodeId');
+    return fetch(`http://api.tvmaze.com/episodes/${episodeId}`)
         .then(response => response.json())
         .then(data => {
             dispatch({

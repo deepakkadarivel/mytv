@@ -22,16 +22,16 @@ describe('<Search />', () => {
         const input = component.find('input');
         expect(input.length).toBe(1);
         expect(input.props().className).toBe('Search-input');
-        expect(input.props().placeholder).toBe(t('search.placeholder'));
-        expect(input.props().disabled).toBeFalsy();
-        input.props().onKeyPress();
-        expect(handleInputMock).toHaveBeenCalled();
+        expect(input.props().placeholder).toBe(t('search.hint'));
     });
 
-    it('renders the hint field of Search Component', () => {
-        const hint = component.find('p');
-        expect(hint.length).toBe(1);
-        expect(hint.props().className).toBe('Search-hint');
-        expect(hint.props().children).toBe(t('search.hint'));
+    it('renders the button of Search Component', () => {
+        const button = component.find('button');
+        expect(button.length).toBe(1);
+        expect(button.props().className).toBe('Search-button');
+        expect(button.props().children).toBe(t('search.button'));
+
+        button.simulate('click');
+        expect(handleInputMock).toHaveBeenCalled();
     });
 });

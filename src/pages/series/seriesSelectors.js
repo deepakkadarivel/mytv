@@ -1,4 +1,5 @@
 import { get } from 'lodash';
+import t from '../../translation';
 
 const getSeriesEpisodes = state => {
     const episodes = get(state, 'series.episodes');
@@ -17,7 +18,28 @@ const getSeriesEpisodes = state => {
         };
     });
 };
-const getSeriesDetails = state => get(state, 'series.details');
+const getSeriesDetail = state => {
+    const detail = get(state, 'series.detail');
+    return {
+        id: detail.id,
+        url: detail.image
+            ? detail.image.medium
+            : 'https://via.placeholder.com/200?text=MyTV',
+        imageAlt: detail.name,
+        title: detail.name,
+        premiered: detail.premiered || t('unknown'),
+        rating: detail.rating && detail.rating.average,
+        type: detail.language,
+        gener: detail.genres && detail.genres.join(' | '),
+        desc: detail.summary
+    };
+};
 const getFetchingEpisodes = state => get(state, 'series.fetchingEpisodes');
+const getFetchingDetail = state => get(state, 'series.fetchingDetail');
 
-export { getSeriesEpisodes, getSeriesDetails, getFetchingEpisodes };
+export {
+    getSeriesEpisodes,
+    getSeriesDetail,
+    getFetchingEpisodes,
+    getFetchingDetail
+};
