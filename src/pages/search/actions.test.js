@@ -10,6 +10,8 @@ import {
 let state;
 let store;
 
+const historyMock = { push: jest.fn() };
+
 describe('fetchShows', () => {
     const middleWares = [thunk];
     const mockStore = configureMockStore(middleWares);
@@ -63,7 +65,7 @@ describe('fetchShows', () => {
             return p;
         });
 
-        store.dispatch(fetchShows()).then(() => {
+        store.dispatch(fetchShows(historyMock)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
             done();
         });
@@ -81,7 +83,7 @@ describe('fetchShows', () => {
                 type: searchActionTypes.FETCH_SHOWS.rejected
             }
         ];
-        store.dispatch(fetchShows()).then(() => {
+        store.dispatch(fetchShows(historyMock)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
             done();
         });
