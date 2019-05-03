@@ -18,10 +18,26 @@ const seriesReducer = (state = seriesInitialState, action) => {
             .setIn(['fetchingEpisodes', 'isFulfilled'], false)
             .setIn(['fetchingEpisodes', 'isRejected'], true);
 
-    case seriesActionTypes.SET_SERIES_DETAILS:
+    case seriesActionTypes.FETCH_DETAIL.fulfilled:
+        return state
+            .setIn(['fetchingDetail', 'isPending'], false)
+            .setIn(['fetchingDetail', 'isFulfilled'], true)
+            .setIn(['fetchingDetail', 'isRejected'], false);
+    case seriesActionTypes.FETCH_DETAIL.pending:
+        return state
+            .setIn(['fetchingDetail', 'isPending'], true)
+            .setIn(['fetchingDetail', 'isFulfilled'], false)
+            .setIn(['fetchingDetail', 'isRejected'], false);
+    case seriesActionTypes.FETCH_DETAIL.rejected:
+        return state
+            .setIn(['fetchingDetail', 'isPending'], false)
+            .setIn(['fetchingDetail', 'isFulfilled'], false)
+            .setIn(['fetchingDetail', 'isRejected'], true);
+
+    case seriesActionTypes.SET_SERIES_DETAIL:
         return state.set(
-            'details',
-            action.details || seriesInitialState.details
+            'detail',
+            action.detail || seriesInitialState.detail
         );
     case seriesActionTypes.SET_SERIES_EPISODES:
         return state.set('episodes', action.episodes);

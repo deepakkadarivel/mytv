@@ -7,15 +7,16 @@ import t from '../../translation';
 
 class SeriesComponent extends Component {
     componentDidMount() {
-        const { fetchEpisodes, details } = this.props;
-        fetchEpisodes(details.id);
+        const { fetchEpisodes, fetchDetail } = this.props;
+        fetchEpisodes();
+        fetchDetail();
     }
 
     render() {
-        const { details, episodes, history, match } = this.props;
+        const { detail, episodes, history, match } = this.props;
         return (
             <div className="Series container">
-                <ShowCard {...details} onClick={() => {}} />
+                <ShowCard {...detail} onClick={() => {}} />
                 <p className="Series-episodeTitle">{t('episodes')}</p>
                 <div className="Series-grid">
                     {episodes.map(episode => (
@@ -34,9 +35,10 @@ class SeriesComponent extends Component {
 }
 
 SeriesComponent.propTypes = {
-    details: PropTypes.object.isRequired,
+    detail: PropTypes.object.isRequired,
     episodes: PropTypes.array.isRequired,
     fetchEpisodes: PropTypes.func.isRequired,
+    fetchDetail: PropTypes.func.isRequired,
     history: PropTypes.any.isRequired,
     match: PropTypes.any.isRequired
 };

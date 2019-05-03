@@ -27,7 +27,7 @@ class ShowsComponent extends Component {
                                 <ShowCard
                                     {...show}
                                     onClick={() => {
-                                        // setDetails(show);
+                                        localStorage.setItem('showId', show.id);
                                         history.push('/series');
                                     }}
                                 />

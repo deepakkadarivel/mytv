@@ -6,7 +6,12 @@ const seriesInitialState = seamlessImmutable({
         isRejected: false,
         isFulfilled: false
     },
-    details: {},
+    fetchingDetail: {
+        isPending: false,
+        isRejected: false,
+        isFulfilled: false
+    },
+    detail: {},
     episodes: []
 });
 
@@ -17,13 +22,19 @@ const seriesActionTypes = {
         rejected: 'FETCH_EPISODES/rejected'
     },
 
-    SET_SERIES_DETAILS: 'SET_SERIES_DETAILS',
+    FETCH_DETAIL: {
+        pending: 'FETCH_DETAIL/pending',
+        fulfilled: 'FETCH_DETAIL/fulfilled',
+        rejected: 'FETCH_DETAIL/rejected'
+    },
+
+    SET_SERIES_DETAIL: 'SET_SERIES_DETAIL',
     SET_SERIES_EPISODES: 'SET_SERIES_EPISODES'
 };
 
-const fetchEpisodes = id => dispatch => {
+const fetchEpisodes = () => dispatch => {
     dispatch({ type: seriesActionTypes.FETCH_EPISODES.pending });
-
+    const id = localStorage.getItem('showId');
     return fetch(`http://api.tvmaze.com/shows/${id}/episodes`)
         .then(response => response.json())
         .then(data => {
@@ -42,9 +53,25 @@ const fetchEpisodes = id => dispatch => {
         });
 };
 
-const setDetails = details => dispatch => {
-    dispatch({ type: seriesActionTypes.SET_SERIES_DETAILS, details });
-    dispatch(fetchEpisodes(details.id));
+const fetchDetail = () => dispatch => {
+    dispatch({ type: seriesActionTypes.FETCH_DETAIL.pending });
+    const id = localStorage.getItem('showId');
+    return fetch(`http://api.tvmaze.com/shows/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            dispatch({
+                type: seriesActionTypes.SET_SERIES_DETAIL,
+                detail: data
+            });
+            dispatch({
+                type: seriesActionTypes.FETCH_DETAIL.fulfilled
+            });
+        })
+        .catch(() => {
+            dispatch({
+                type: seriesActionTypes.FETCH_DETAIL.rejected
+            });
+        });
 };
 
-export { seriesInitialState, seriesActionTypes, fetchEpisodes, setDetails };
+export { seriesInitialState, seriesActionTypes, fetchEpisodes, fetchDetail };

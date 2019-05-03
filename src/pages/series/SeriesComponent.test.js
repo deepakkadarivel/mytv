@@ -4,9 +4,10 @@ import SeriesComponent from './SeriesComponent';
 import { seriesInitialState } from './seriesActions';
 
 const historyMock = { push: jest.fn() };
+const match = { url: '/' };
 
 const props = {
-    details: {
+    detail: {
         url: 'http://placeholder.com/32',
         imageAlt: 'test image',
         title: 'show title',
@@ -18,7 +19,9 @@ const props = {
     },
     episodes: seriesInitialState.episodes,
     fetchEpisodes: jest.fn(),
-    history: historyMock
+    fetchDetail: jest.fn(),
+    history: historyMock,
+    match
 };
 
 test('renders fine', () => {

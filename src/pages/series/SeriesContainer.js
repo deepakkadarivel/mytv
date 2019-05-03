@@ -1,20 +1,22 @@
 import { connect } from 'react-redux';
 import SeriesComponent from './SeriesComponent';
-import { fetchEpisodes, setDetails } from './seriesActions';
+import { fetchEpisodes, fetchDetail } from './seriesActions';
 
 import {
-    getSeriesDetails,
+    getSeriesDetail,
     getSeriesEpisodes,
-    getFetchingEpisodes
+    getFetchingEpisodes,
+    getFetchingDetail
 } from './seriesSelectors';
 
 const mapStateToProps = state => ({
-    details: getSeriesDetails(state),
+    detail: getSeriesDetail(state),
     episodes: getSeriesEpisodes(state),
-    fetchingEpisodes: getFetchingEpisodes(state)
+    fetchingEpisodes: getFetchingEpisodes(state),
+    fetchingDetail: getFetchingDetail(state)
 });
 
-const mapDispatchToProps = { fetchEpisodes, setDetails };
+const mapDispatchToProps = { fetchEpisodes, fetchDetail };
 
 export default connect(
     mapStateToProps,
